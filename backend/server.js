@@ -1,5 +1,12 @@
-const express = require('express')
-const products = require('../backend/data/products')
+import express from 'express'
+import dotenv from 'dotenv'
+import colors from 'colors'
+import connectDB from './config/db.js'
+import products from '../backend/data/products.js'
+
+dotenv.config()
+
+connectDB()
 
 const app = express()
 
@@ -19,5 +26,5 @@ app.get('/api/products/:id', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log('Server running in the port ' + PORT)
+  console.log('Server running in the port ' + PORT.green.bold)
 })
