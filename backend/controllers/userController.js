@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
+import generateToken from '../utils/generateToken.js'
 
 //asyncHandler is a middleware that will deal with errors so we don't need to have try catch in all routes
 // @desc Auth user & get token
@@ -16,7 +17,7 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: null,
+      token: generateToken(user._id),
     })
   } else {
     res.status(401)
